@@ -251,7 +251,7 @@ export default function JackpotPredictor() {
         </Form>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="sm:max-w-[425px] bg-white text-black">
+          <DialogContent className="w-[95%] max-w-[95%] sm:w-[90%] sm:max-w-[90%] md:w-[80%] md:max-w-[80%] lg:w-[70%] lg:max-w-[70%] bg-white text-black rounded-lg">
             <DialogTitle>{isCrazy ? '' : '結果'}</DialogTitle>
             <DialogDescription>
               {isCrazy ? '' : descriptionMessage}
