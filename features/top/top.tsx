@@ -160,7 +160,7 @@ export default function JackpotPredictor() {
 
   const onSubmit = useCallback(
     (values: FormValues) => {
-      // ここに予測ロジックを実装
+      // TODO ここに予測ロジックを実装
       const dummyPrediction = Math.floor(Math.random() * 100) + 1
       incrementSubmitCount()
       checkIsCrazy()
