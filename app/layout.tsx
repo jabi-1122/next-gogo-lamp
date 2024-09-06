@@ -18,18 +18,22 @@ export const metadata: Metadata = {
   description:
     'あなたの打っているジャグラーが次いつ当たるのかを超適当に予測します。絶対に信じないでください。',
   keywords: ['ジャグラー', 'GOGOランプ', 'いつ当たる', 'ペカ', '設定'],
+  icons: [
+    { rel: 'icon', url: '/images/favicon.ico' },
+    { rel: 'icon', url: '/images/favicon.svg', type: 'image/svg+xml' },
+  ],
   openGraph: {
     title: '次、いつペカる？',
     description:
       'あなたの打っているジャグラーが次いつ当たるのかを超適当に予測します。絶対に信じないでください。',
-    // images: ['/og-image.jpg'],
+    images: ['/images/favicon.svg'],
   },
   twitter: {
     card: 'summary_large_image',
     title: '次、いつペカる？',
     description:
       'あなたの打っているジャグラーが次いつ当たるのかを超適当に予測します。絶対に信じないでください。',
-    // images: ['/twitter-image.jpg'],
+    images: ['/images/favicon.svg'],
   },
 }
 

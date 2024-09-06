@@ -24,7 +24,7 @@ import {
   useRandomCrazeMessage,
   useRandomDescription,
 } from '@/hooks/random-message'
-import { GOGOLamp } from '@/lib/svg'
+import { GOGOLamp, GOGOLamp2 } from '@/lib/svg'
 
 const formSchema = z
   .object({
@@ -70,6 +70,7 @@ export default function JackpotPredictor() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [submitCount, setSubmitCount] = useState(0)
   const [isCrazy, setIsCrazy] = useState(false)
+  const [isLit, setIsLit] = useState<boolean>(false)
 
   const { descriptionMessage, getRandomDescription } = useRandomDescription()
   const { crazyMessage, getRandomCrazeMessage } = useRandomCrazeMessage()
@@ -169,6 +170,10 @@ export default function JackpotPredictor() {
       getRandomCrazeMessage()
       setIsDialogOpen(true)
 
+      setTimeout(() => {
+        setIsLit(true)
+      }, 1000)
+
       // isCrazeじゃない時だけフォームをリセット
       if (!isCrazy) {
         form.reset({
@@ -181,6 +186,12 @@ export default function JackpotPredictor() {
     },
     [incrementSubmitCount, checkIsCrazy, form]
   )
+
+  useEffect(() => {
+    if (!isDialogOpen) {
+      setIsLit(false)
+    }
+  }, [isDialogOpen])
 
   return (
     <div className="flex content-center items-center h-dvh">
@@ -255,11 +266,16 @@ export default function JackpotPredictor() {
                 </div>
               </div>
             ) : (
-              <p className="text-lg font-semibold">
-                次のペカ！は
-                <span className="text-2xl text-blue-600">{prediction}</span>
-                回転以内だ！……といいね
-              </p>
+              <>
+                <p className="text-lg font-semibold">
+                  次のペカ！は
+                  <span className="text-2xl text-blue-600">{prediction}</span>
+                  回転以内だ！……といいね
+                </p>
+                <div className="flex justify-center">
+                  <GOGOLamp2 isLit={isLit} />
+                </div>
+              </>
             )}
           </DialogContent>
         </Dialog>
