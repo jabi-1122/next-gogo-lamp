@@ -25,6 +25,7 @@ import {
   useRandomDescription,
 } from '@/hooks/random-message'
 import { GOGOLamp, GOGOLamp2 } from '@/lib/svg'
+import { getYourJugglersResult } from '@/features/common/getYourJugglersResult'
 
 const formSchema = z
   .object({
@@ -161,11 +162,15 @@ export default function JackpotPredictor() {
 
   const onSubmit = useCallback(
     (values: FormValues) => {
-      // TODO ここに予測ロジックを実装
-      const dummyPrediction = Math.floor(Math.random() * 100) + 1
+      const result = getYourJugglersResult(
+        values.totalSpins,
+        values.bigBonusCount,
+        values.regularBonusCount
+      )
+
       incrementSubmitCount()
       checkIsCrazy()
-      setPrediction(dummyPrediction)
+      setPrediction(result.nextBonusAt)
       getRandomDescription()
       getRandomCrazeMessage()
       setIsDialogOpen(true)
