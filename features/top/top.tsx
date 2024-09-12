@@ -178,16 +178,6 @@ export default function JackpotPredictor() {
       setTimeout(() => {
         setIsLit(true)
       }, 1000)
-
-      // isCrazeじゃない時だけフォームをリセット
-      if (!isCrazy) {
-        form.reset({
-          totalSpins: 0,
-          bigBonusCount: 0,
-          regularBonusCount: 0,
-          currentSpins: 0,
-        })
-      }
     },
     [incrementSubmitCount, checkIsCrazy, form]
   )
@@ -195,6 +185,14 @@ export default function JackpotPredictor() {
   useEffect(() => {
     if (!isDialogOpen) {
       setIsLit(false)
+    }
+    if (!isDialogOpen && !isCrazy) {
+      form.reset({
+        totalSpins: 0,
+        bigBonusCount: 0,
+        regularBonusCount: 0,
+        currentSpins: 0,
+      })
     }
   }, [isDialogOpen])
 
